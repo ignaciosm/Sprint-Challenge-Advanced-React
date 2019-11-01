@@ -10,12 +10,15 @@ class App extends React.Component {
     this.state = {
       players: [],
     };
-    console.log('Constructor is running!');
+    // console.log('Constructor is running!');
 
   }
 
+  // abortController = new AbortController()
+
   componentDidMount() {
     axios
+      // .get('http://localhost:5000/api/players', { signal: this.abortController.signal })
       .get('http://localhost:5000/api/players')
       .then(res => {
         // console.log('res', res.data)
@@ -26,6 +29,10 @@ class App extends React.Component {
       })
       .catch(err => console.log(err));
   }
+
+  // componentWillMount() {
+  //   this.abortController.abort()
+  // }
 
   render() {
     return (

@@ -14,7 +14,7 @@ const useDarkMode = () => {
     }
 
   }, [darkMode]);
-  console.log('darkMode', darkMode)
+  // console.log('darkMode', darkMode)
   return [darkMode, setDarkMode];
 }
 

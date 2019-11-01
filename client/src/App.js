@@ -1,26 +1,49 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+import Players from './components/Players';
+import Navbar from "./components/Navbar";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      players: [],
+    };
+    // console.log('Constructor is running!');
+
+  }
+
+  // abortController = new AbortController()
+
+  componentDidMount() {
+    axios
+      // .get('http://localhost:5000/api/players', { signal: this.abortController.signal })
+      .get('http://localhost:5000/api/players')
+      .then(res => {
+        // console.log('res', res.data)
+        this.setState({
+          players: res.data
+        });
+        console.log('players',this.state.players);
+      })
+      .catch(err => console.log(err));
+  }
+
+  // componentWillMount() {
+  //   this.abortController.abort()
+  // }
+
+  render() {
+    return (
+      <div className="App">
+        <>
+          <Navbar />
+          <Players players={this.state.players}/>
+        </>
+      </div>
+    );
+  }
 }
 
 export default App;

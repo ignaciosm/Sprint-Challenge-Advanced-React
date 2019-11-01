@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import axios from 'axios';
 import Players from './components/Players';
+import Navbar from "./components/Navbar";
 
 class App extends React.Component {
   constructor() {
@@ -30,10 +31,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <>
-          {/* <h1>Players</h1>
-          {this.state.players.map(player => {
-            <p>{player.name}</p>
-          })} */}
+          <Navbar />
           <Players players={this.state.players}/>
         </>
       </div>
